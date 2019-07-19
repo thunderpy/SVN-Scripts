@@ -21,7 +21,7 @@ if re.findall("^[a-zA-Z0-9_-]*$", newSVN):
         os.system('svnadmin create ' + newSVN)
         sleep(2)
 else:
-    print("Please enter a valid SVN name eg:- P100241_IKEA_35_Language ")
+    print("Please enter a valid SVN name eg:- P100241_Language ")
     exit()
 
 # change directory to svn acl
@@ -45,19 +45,19 @@ print("Appending httpd.conf")
 sleep(1)
 
 text_to_append = """\n
-<Location /P100241_IKEA_35_Language>
+<Location /P100241_Language>
   DAV svn
-  SVNPath "d:\\repositories\\P100241_IKEA_35_Language
-  AuthzSVNAccessFile d:\svn_repository_acls\\P100241_IKEA_35_Language-acl.conf
+  SVNPath "d:\\repositories\\P100241__Language
+  AuthzSVNAccessFile d:\svn_repository_acls\\P100241_Language-acl.conf
   AuthType Basic
   AuthBasicProvider ldap
   AuthzLDAPAuthoritative on
   AuthName "Subversion Repository"
-  AuthLDAPBindDN "SVN-Admin@mitrmum.com"
-  AuthLDAPBindPassword mitr@svn
-  AuthLDAPURL "ldap://172.19.10.10:3268/dc=mitrmum,dc=com?sAMAccountName?sub?(objectClass=*)"
+  AuthLDAPBindDN "SVN-Admin@company.com"
+  AuthLDAPBindPassword comp@svn
+  AuthLDAPURL "ldap://172.19.10.10:3268/dc=company,dc=com?sAMAccountName?sub?(objectClass=*)"
   Require valid-user
-</Location>""".replace('P100241_IKEA_35_Language',newSVN)
+</Location>""".replace('P100241_Language',newSVN)
 
 with open("httpd.conf", 'a') as myfile:
     myfile.write(text_to_append)

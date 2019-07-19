@@ -60,7 +60,7 @@ Add-Content $svnACl -Value "[$newSVN`:/]`n@allusers = rw`n@admin = rw`n`n`n[grou
 cd "C:\Program Files (x86)\Apache Software Foundation\Apache2.2\conf"
 Write-Verbose "Appending httpd.conf" -Verbose
 sleep 1
-Add-Content .\httpd.conf -Value "`n<Location /$newSVN>`n  DAV svn`n  SVNPath 'd:\\repositories\\$newSVN'`n  AuthzSVNAccessFile d:\svn_repository_acls\\$newSVN-acl.conf`n  AuthType Basic`n  AuthBasicProvider ldap`n  AuthzLDAPAuthoritative on`n  AuthName 'Subversion Repository'`n  AuthLDAPBindPassword mitr@svn`n  AuthLDAPURL 'ldap://172.19.10.10:3268/dc=mitrmum,dc=com?sAMAccountName?sub?(objectClass=*)'`n  Require valid-user`n</Location>"
+Add-Content .\httpd.conf -Value "`n<Location /$newSVN>`n  DAV svn`n  SVNPath 'd:\\repositories\\$newSVN'`n  AuthzSVNAccessFile d:\svn_repository_acls\\$newSVN-acl.conf`n  AuthType Basic`n  AuthBasicProvider ldap`n  AuthzLDAPAuthoritative on`n  AuthName 'Subversion Repository'`n  AuthLDAPBindPassword com@svn`n  AuthLDAPURL 'ldap://172.19.10.10:3268/dc=company,dc=com?sAMAccountName?sub?(objectClass=*)'`n  Require valid-user`n</Location>"
 
 Write-Host "$newSVN SVN is created." -ForegroundColor Green
 
@@ -69,4 +69,3 @@ Write-Host "Restarting apache please wait!!!!!" -ForegroundColor DarkYellow
 sleep 2
 cd ..\bin
 .\httpd.exe -l restart
-
